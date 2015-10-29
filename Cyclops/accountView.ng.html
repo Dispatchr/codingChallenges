@@ -1,0 +1,48 @@
+<div class="container" ng-controller="AccountView">
+    <div ng-if="theView">
+		<h1 class="Product">{{yourProf.firstname}} {{yourProf.lastname}} <button ng-click="switchIt()">Edit Details</button></h1>
+		<ul>
+			<li>Phone #1: {{yourProf.phone1}}</li>
+			<li>Phone #2: {{yourProf.phone2}}</li>
+		</ul>
+	</div>
+	<div ng-if="!theView">
+		<form ng-submit="updateProf(u)">
+			<table>
+				<tr><td>First Name</td><td><input type="text" ng-model="u.fname" ng-value='yourProf.firstname'></td></tr>
+				<tr><td>Last Name</td><td><input type="text" ng-model="u.lname" ng-value="yourProf.lastname"></td></tr>
+				<tr><td>Phone#1</td><td><input type="text" ng-model="u.phone1" ng-value="yourProf.phone1"></td></tr>
+				<tr><td>Phone#2</td><td><input type="text" ng-model="u.phone2" ng-value="yourProf.phone2"></td></tr>
+				<tr><td><button ng-click="switchIt()">Cancel</button></td><td><input type="submit" value="Change Details"></td></tr>
+			</table>
+		</form>
+	</div>
+	<div ng-show="aView">
+		<h1 class="Product">Address List</h1>
+		<ul>
+			<li ng-repeat="address in addresses">
+				<button class="delete" ng-click="addresses.remove(address)">&times;</button>
+				<button class="add" ng-click="makePrimary(address)">&times;</button>
+				<span class="test">
+					{{address.address}}
+				</span>
+			</li>
+			<button ng-click="hideShow()">Add New Address</button>
+		</ul>
+	</div>
+	<div ng-show="!aView">
+		<form ng-submit="addAddress(u)">
+			<table>
+				<tr><td>Name</td>	<td><input type="text" ng-model="u.name" 
+					ng-value='yourProf.firstname+" "+yourProf.lastname'>		</td></tr>
+				<tr><td>Address</td><td><input type="text" ng-model="u.address">	</td></tr>
+				<tr><td>State</td>	<td><input type="text" ng-model="u.state">		</td></tr>
+				<tr><td>Zipcode</td><td><input type="text" ng-model="u.zipcode">	</td></tr>
+				<tr><td>Country</td><td><input type="text" ng-model="u.country">	</td></tr>
+				<tr><td><button ng-click="hideShow()">Cancel</button></td><!-- name undefined error-->
+									<td><input type="submit" value="Add Address">	</td></tr>
+			</table>
+		</form>
+	</div>
+
+</div>

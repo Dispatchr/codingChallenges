@@ -1,0 +1,48 @@
+<div class="container">
+  <header>
+    <h1> Custom Order( {{ incompleteCount() }} )</h1>
+    <label class="hide-completed">
+
+      <input type="checkbox" ng-model="$parent.hideCompleted"/>
+
+      Hide Completed Orders
+
+    </label>
+
+    <blaze-template name="loginButtons"></blaze-template>
+
+ 
+    <!-- add a form below the h1 -->
+
+    <form class="new-order" ng-submit="addOrder(newOrder); newOrder='';" ng-show="$root.currentUser">
+
+      <input ng-model="newOrder" type="text"
+             name="text" placeholder="Type to add new orders with price in '$'" />
+    </form>
+
+  </header>
+
+
+  <ul>
+      <li ng-repeat="orders in order" ng-class="{'checked': orders.checked, 'private':orders.private}">
+
+      <button class="delete" ng-click="deleteOrder(orders)">&times;</button>
+
+      <input type="checkbox" ng-checked="orders.checked" ng-click="setChecked(orders)" class="toggle-checked" />
+
+            <button class="toggle-private"
+
+              ng-if="orders.owner === $root.currentUser._id"
+
+              ng-click="setPrivate(orders)">
+
+        {{orders.private == true ? "Private" : "Public"}}
+
+      </button>
+      
+      <span class="text">  <strong>{{orders.username}}</strong> - {{orders.text}}</span>
+
+    </li>
+  </ul>
+
+</div>

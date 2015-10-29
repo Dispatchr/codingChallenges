@@ -1,0 +1,45 @@
+<!doctype html>
+	<html ng-app='customersApp'>
+	<head>
+	    <meta charset="utf-8"/>
+	    <title>Dispatchr_CMS</title>
+	    <meta name="description" content="Dispatchr_CMS"/>
+		<link rel="stylesheet" href="libraries/bootstrap/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="libraries/bootstrap/dist/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="/stylesheets/custom.css" type="text/css">
+
+        <!-- angular -->
+	    <script src="js/externals/angular.js"></script>
+    	<script src="js/externals/angular-route.js"></script>
+
+        <script src="js/app.js"></script>
+
+        <script src="js/factories/customer.js"></script>
+        <script src="js/factories/order.js"></script>
+        <script src="js/factories/product.js"></script>
+        <script src="js/factories/dashboard.js"></script>
+
+        <script src="js/controllers/customers.js"></script>
+        <script src="js/controllers/orders.js"></script>
+        <script src="js/controllers/products.js"></script>
+        <script src="js/controllers/dashboards.js"></script>
+	</head>
+	
+	<body>
+		<div class="container">
+			<nav class="navbar navbar-fixed-top navbar-inverse">
+		      <div class="container">
+		        <div id="navbar" class="collapse navbar-collapse">
+		          <ul class="nav navbar-nav">
+		            <li><a href="#/dashboard">Dashboard</a></li>
+		            <li><a href="#/">Customers</a></li>
+		            <li><a href="#/orders">Orders</a></li>
+		            <li><a href="#/products">Items</a></li>
+		          </ul>
+		        </div>
+		      </div>
+		    </nav>
+			<div ng-view></div>
+		</div>
+	</body>
+</html>

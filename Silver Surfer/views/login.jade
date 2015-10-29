@@ -1,0 +1,15 @@
+//-----------------------------Modal for login--------------------------------------
+div#loginModal(class="modal")
+  div(class="modal-dialog")
+    div(class="modal-content")
+      div(class="modal-header")
+        h2(class="modal-title") Login As ...
+      div(class="modal-body")
+        button(class="btn btn-success btn-lg btn-block", data-dismiss="modal") Login as Sales Representative
+        br
+        button(class="btn btn-warning btn-lg btn-block", data-dismiss="modal", ng-click="changeAuth()") Login as Inventory Administration
+        br
+        p* login as sales representative will have no authorization to edit or change
+        p* login as inventory administration will have authorization to edit and change
+        p* login without choosing either of them will be sales representative defaultly
+      div(class="modal-footer")

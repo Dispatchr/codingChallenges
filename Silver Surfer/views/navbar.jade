@@ -1,0 +1,13 @@
+//---------------------- navbar -------------------------------------
+div(class="row", id="header")
+  nav(class="navbar navbar-default navbar-fixed-top")
+    div(class="navbar-header") 
+      img#logo(src="http://www.dispatchr.com/img/logo.png")
+    div(class="navbar navbar-nav navbar-left", ng-show="auth")
+      li
+        button#ordBtn(class="btn btn-info btn-lg", ng-click="showOrder()") Order Manage
+      li 
+        button#invBtn(class="btn btn-default btn-lg", ng-click="showInven()") Inventory Manage
+    div(class="navbar navbar-nav navbar-right")
+      h1#appname 
+        b Order & Inventory Manage

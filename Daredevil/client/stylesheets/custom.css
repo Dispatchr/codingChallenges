@@ -1,0 +1,54 @@
+body {
+  padding-top: 60px;
+}
+
+* {
+	outline:solid 0px red;
+}
+
+/*reset width of bootstrap container*/
+.container {
+	width:970px;
+}
+
+/* add spacing to container */
+.spacing {
+	padding: 40px 15px;
+	border:0px solid #ccc;
+}
+
+/* add spacing to form elements */
+.input-group {
+	margin-bottom: 5px;
+}
+
+.btn-primary {
+	float: right;
+}
+
+div.products {
+	margin-bottom:50px;
+}
+
+div.products div.name {
+	margin-bottom:15px;
+	font-weight: bold;
+	/*margin:5px 5px 5px 0px;
+	padding:5px 5px 5px 0px;*/
+}
+
+div.products div.item {	
+	margin-top: 25px;
+	min-height:150px;
+	border:1px solid #ccc;
+}
+
+div.products .btn {
+	position:absolute;
+	bottom:0px;
+}
+
+div.error {
+	color:red;
+	margin-bottom: 15px;
+}

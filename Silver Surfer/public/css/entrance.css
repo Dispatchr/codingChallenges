@@ -1,0 +1,60 @@
+html, body{
+	height: 100%;
+	width: 100%;
+	padding: 0px;
+	margin: 0px;
+}
+
+#header{
+	height: 10%;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+#header h2{
+	margin-right: 30px;
+}
+
+#logo{
+	margin-top: 15px;
+	margin-bottom: 15px;
+	margin-left: 20px;
+}
+
+#body{
+	height: 90%;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+#bodymiddle{
+	margin: 30px;
+	height: 85%;
+}
+
+#bodymiddle > div{
+	margin: 0px;
+	padding: 0px;
+}
+
+#bCust{
+	margin-left: 7%;
+	bottom: 0;
+}
+
+#bAdmin{
+	bottom: 0;
+}
+
+p a{
+	bottom: 0;
+}
+
+#footer h4{
+	text-align: center;
+}
+
+
+

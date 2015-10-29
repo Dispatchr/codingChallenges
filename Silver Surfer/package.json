@@ -1,0 +1,20 @@
+{
+  "name": "dispatchr_xuchangchen",
+  "version": "1.0.0",
+  "description": "minihackthon",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "xuchang chen",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "cookie-parser": "^1.4.0",
+    "express": "^4.13.3",
+    "express-session": "^1.11.3",
+    "jade": "^1.11.0",
+    "mongodb": "^2.0.46",
+    "morgan": "^1.6.1"
+  }
+}

@@ -1,0 +1,70 @@
+<!--Created by Tejas on 10/24/2015.-->
+<div ng-controller="customersController">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Search Customers</h2>
+
+            <form name="search" class="form">
+                <div class="form-group">
+                    <input type="text" name="filter" class="form-control" placeholder="Enter Keyword"
+                           ng-model="customer_name">
+                </div>
+            </form>
+
+            <h2>List of Customers</h2>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th data-field="customer">Customer Name</th>
+                    <th data-field="address">Address</th>
+                    <th data-field="created_at">Date</th>
+                    <th class="right" data-field="delete">Delete</th>
+                    <th class="right" data-field="edit">Edit</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat='customer in customers | filter:customer_name | orderBy: created_date'>
+                    <td ng-bind='customer.name'></td>
+                    <td ng-bind='customer.address'></td>
+                    <td ng-bind='customer.created_at | date'></td>
+                    <td class="right">
+                        <form><input type="submit" value="Delete" class="btn btn-danger"
+                                     ng-click="deleteCustomer(customer)"></form>
+                    </td>
+                    <td class="right">
+
+                        <input type="submit" class="btn btn-success" ng-hide="editing" ng-click="editing = true"
+                               value="Edit">
+
+                        <div>
+                            <form ng-show="editing" ng-submit="editing = false">
+                                <label>Name:</label>
+                                <input type="text" ng-model="customer.name" placeholder="Name" ng-required/>
+                                </br>
+                                <label>Address:</label>
+                                <input type="text" ng-model="customer.address" placeholder="Address" ng-required/>
+                                </br>
+                                <input class="btn" type="submit" value="Save" ng-click="editCustomer(customer)">
+                            </form>
+                        </div>
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <h2>Add a New Customer</h2>
+
+            <form name="add" class="form" novalidate id="edit">
+                <div class="form-group">
+                    <label for="customer">Customer Name:</label>
+                    <input type="text" name="name" class="form-control" ng-model='newCustomer.name'>
+                    <label for="customer">Customer Address:</label>
+                    <input type="text" name="name" class="form-control" ng-model='newCustomer.address'>
+                    <input type="submit" name="Add" class="btn btn-primary" ng-disabled="add.$invalid"
+                           ng-click="addCustomer(newCustomer)">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

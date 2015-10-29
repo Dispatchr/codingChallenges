@@ -1,0 +1,58 @@
+//- Modal for Adding New Customer and Order
+div(id="newCustForm", class="modal fade", role="dialog")
+  div(class="modal-dialog")
+    div(class="modal-content")
+      div(class="modal-header")
+        button(type="button", class="close", data-dismiss="modal") &times;
+        h4(class="modal-title") 
+          | New Customer And Orders
+      div(class="modal-body")
+        form#newCustForm(action="/addNewCustomer", method="POST", name="newCustForm" novalidate)
+          
+          div(class="input-group input-group")
+            span(class="input-group-addon", id="sizing-addon1") 
+              span(class="glyphicon glyphicon-user")
+            input#CustomerUsername(ng-model="CustomerUsername", type="text", name="CustomerUsername", class="form-control", placeholder="Customer Username", aria-describedby="sizing-addon1" required)
+          span(style="color:red" ng-show="newCustForm.CustomerUsername.$dirty && newCustForm.CustomerUsername.$invalid")
+            span(ng-show="newCustForm.CustomerUsername.$error.required") Username is required.
+          
+          div(class="input-group input-group")
+            span(class="input-group-addon", id="sizing-addon1") 
+              span(class="glyphicon glyphicon-map-marker")
+            input#Address(ng-model="Address", type="text", name="Address", class="form-control", placeholder="Address", aria-describedby="sizing-addon1" required)
+          span(style="color:red" ng-show="newCustForm.Address.$dirty && newCustForm.Address.$invalid")
+            span(ng-show="newCustForm.Address.$error.required") Address is required.
+          
+          div(class="input-group input-group")
+            span(class="input-group-addon", id="sizing-addon1") 
+              span(class="glyphicon glyphicon-earphone")
+            input#Phone(ng-model="Phone", type="number", name="Phone", class="form-control", placeholder="Phone Number", aria-describedby="sizing-addon1" required)
+          span(style="color:red" ng-show="newCustForm.Phone.$dirty && newCustForm.Phone.$invalid")
+            span(ng-show="newCustForm.Phone.$error.required") Phone is required.
+            span(ng-show="newCustForm.Phone.$invalid") Phone is invalid.
+          
+          div(class="input-group input-group")
+            span(class="input-group-addon", id="sizing-addon1") 
+              span(class="glyphicon glyphicon-envelope")
+            input#Email(ng-model="Email", type="email", name="Email", class="form-control", placeholder="Email", aria-describedby="sizing-addon1" required)
+          span(style="color:red" ng-show="newCustForm.Email.$dirty && newCustForm.Email.$invalid")
+            span(ng-show="newCustForm.Email.$error.required") Email is required.
+            span(ng-show="newCustForm.Email.$invalid") Email is invalid.
+          
+          div(class="input-group input-group")
+            span(class="input-group-addon", id="sizing-addon1") 
+              span(class="glyphicon glyphicon-shopping-cart")
+            select#OrderName(ng-model="OrderName", ng-options="(item.inventoryName + '  $' + item.inventoryRate) for item in inventory track by item.inventoryRate", name="OrderName", class="form-control", aria-describedby="sizing-addon1")
+              option(value="") ----Choose Item----
+
+          div(class="input-group input-group")
+            span(class="input-group-addon", id="sizing-addon1") 
+              span(class="glyphicon glyphicon-scale")
+            input#Amount(ng-model="Amount", type="number", name="Amount", class="form-control", placeholder="Amount", aria-describedby="sizing-addon1")
+          span(ng-show="newCustForm.Amount.$invalid", style="color: red;") Amount is invalid.
+
+      div(class="modal-footer")
+        button(class="btn btn-success", data-dismiss="modal", ng-click="addNewCustomer()", ng-disabled="newCustForm.$invalid") 
+          | Submit
+        button(class="btn btn-default", data-dismiss="modal") 
+          | Close

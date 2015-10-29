@@ -1,0 +1,74 @@
+//------------right part of the page, show all the customers and orders----------
+div(class="col-xs-9 col-sm-9 col-md-9 col-lg-9")
+  div#InfoBox(ng-repeat="customer in allRecords | filter:search:strict")
+    h3 Customer: {{customer.CustomerUsername}}
+    button(ng-click="editCustomerData(customer.CustomerUsername)", class="btn btn-warning", ng-hide="showCustomerInfo == customer.CustomerUsername || !auth")
+      | Edit Customer Data 
+    &nbsp;&nbsp;
+    button(class="btn btn-success", data-toggle="modal", data-target="#newOrdForm", ng-click="setCustomerUsername(customer.CustomerUsername)")
+      | Add New Order
+    div(ng-show="showCustomerInfo == customer.CustomerUsername")
+      form#editExCustomerInfo(action="/updateExCustomer", method="POST", name="editExCustomerInfo")
+        div(class="input-group input-group")
+            span(class="input-group-addon", id="sizing-addon1") 
+              span(class="glyphicon glyphicon-map-marker")
+            input#Address(ng-model="CustomerInfo[0].Address", value="{{CustomerInfo[0].Address}}", type="text", name="Address", class="form-control", placeholder="Address", aria-describedby="sizing-addon1")
+        div(class="input-group input-group")
+          span(class="input-group-addon", id="sizing-addon1") 
+            span(class="glyphicon glyphicon-earphone")
+          input#Phone(ng-model="CustomerInfo[0].Phone", value="{{CustomerInfo[0].Phone}}", type="text", name="Phone", class="form-control", placeholder="Phone Number", aria-describedby="sizing-addon1")
+        div(class="input-group input-group")
+          span(class="input-group-addon", id="sizing-addon1") 
+            span(class="glyphicon glyphicon-envelope")
+          input#Email(ng-model="CustomerInfo[0].Email", value="{{CustomerInfo[0].Email}}", type="text", name="Email", class="form-control", placeholder="Email", aria-describedby="sizing-addon1")
+      button(ng-click="updateExCustomer(customer.CustomerUsername)", class="btn btn-success")
+        | Save
+      button(ng-click="updateExCustomerCancel()", class="btn btn-default")
+        | Cancel
+    table(class="table table-hover")
+      thead
+        tr
+          th Order Name
+          th Amount
+          th Single Rate
+          th Total Rate
+      tbody
+        tr(ng-repeat="order in customer.Orders")
+          form#editOrderForm(name="editOrderForm", action="/", method="POST" novalidate)
+            td(ng-hide="editTrue == order.Key")
+              {{order.OrderName}}    
+            td(ng-show="editTrue == order.Key") 
+              input#OrderName(type="text", ng-model="order.OrderName", value="order.OrderName", name="order.OrderName" required)
+            span(style="color:red" ng-show="editOrderForm.OrderName.$dirty && editOrderForm.OrderName.$invalid")
+              span(ng-show="editOrderForm.OrderName.$error.required") Order Name is required.
+
+            td(ng-hide="editTrue == order.Key")
+              {{order.Amount}}    
+            td(ng-show="editTrue == order.Key")
+              input#OrderAmount(type="number", ng-model="order.Amount", value="order.Amount", name="order.Amount" required)
+            span(style="color:red" ng-show="editOrderForm.OrderAmount.$dirty && editOrderForm.OrderAmount.$invalid")
+              span(ng-show="editOrderForm.OrderAmount.$error.required") Order Amount is required.
+              span(ng-show="editOrderForm.OrderAmount.$invalid") Order Amount is invalid.
+
+            td(ng-hide="editTrue == order.Key")
+              {{order.Rate}}    
+            td(ng-show="editTrue == order.Key")
+              input#OrderRate(type="number", ng-model="order.Rate", value="order.Rate", name="order.Rate" required)
+            span(style="color:red" ng-show="editOrderForm.OrderRate.$dirty && editOrderForm.OrderRate.$invalid")
+              span(ng-show="editOrderForm.OrderRate.$error.required") Order Rate is required.
+              span(ng-show="editOrderForm.OrderRate.$invalid") Order Rate is invalid.
+
+            td
+              {{order.Amount * order.Rate}}
+            td
+              button(ng-click="updateExOrder(customer.CustomerUsername, order.OrderName, order.Amount, order.Rate, order.Key)", class="btn btn-success", ng-show="editTrue == order.Key", ng-disabled="editOrderForm.$invalid")
+                | Save
+            td
+              button(ng-show="editTrue == order.Key", class="btn btn-default", ng-click="updateExOrderCancel()")
+                | Cancel
+            td
+              button(ng-click="editExOrder(order.Key)", class="btn btn-warning", ng-hide="editTrue == order.Key || !auth")
+                | Edit This Order
+            td
+              button(ng-click="deleteExOrder(customer.CustomerUsername, order.Key)", class="btn btn-danger", ng-show="auth")
+                span(class="glyphicon glyphicon-trash")

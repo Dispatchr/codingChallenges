@@ -1,0 +1,14 @@
+<div class="container" ng-controller="AddProduct">
+	<header>
+		<h1>Products</h1>
+	</header>
+    <!-- product adding template-->
+    <form class="new-task" ng-submit="addProduct(prod)">
+		<input ng-model="prod.name" type="text" placeholder="Name" />
+		<input ng-model="prod.price" type="text" placeholder="Price" />
+		<input ng-model="prod.desc" type="text" placeholder="Description" />
+		<input ng-model="prod.image" type="text" placeholder="ImageLocation" />
+		<input ng-model="prod.status" type="text" placeholder="Status" />
+		<button type="submit">Submit Entry</button>
+    </form>
+</div>

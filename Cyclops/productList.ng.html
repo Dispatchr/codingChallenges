@@ -1,0 +1,27 @@
+<div class="container" ng-controller="ProductList">
+	<header>
+		<h1>Products</h1>
+	</header>
+	
+	<label class="hide-completed">
+		<input type="checkbox" ng-model="$parent.hideCompleted"/>
+		Hide Completed Tasks
+	</label>
+	    
+    <!-- productlistingtemplate -->
+	<ul>
+		<li ng-repeat="product in products" ng-class="{'checked': product.checked}">
+			<button class="delete" ng-click="products.remove(product)">&times;</button>
+
+			<input type="checkbox" ng-model="product.checked" class="toggle-checked" />
+			<span class="test">
+				{{product.name}} | 
+				{{product.price}} |
+				{{product.description}} |
+				{{product.image}} |
+				{{product.status}}
+			</span>
+			<button ng-click="addCart(product)" >Add To Cart</button>
+		</li>
+	</ul>
+</div>

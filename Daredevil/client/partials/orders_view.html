@@ -1,0 +1,103 @@
+<!--Created by Tejas on 10/24/2015.-->
+<div ng-controller="ordersController">
+
+	<div class="row">
+		<div class="col-md-12">
+			<form name="search" class="form">
+				<div class="form-group">
+					<h2>Search Orders</h2>
+					<input type="text" class="form-control" placeholder="Keyword" ng-model="order_customer">
+				</div>
+			</form>
+
+			<table class="table table-striped">
+				<thead>
+				<tr>
+					<th data-field="name">Customer Name</th>
+					<th data-field="product">Product</th>
+					<th data-field="quantity">Quantity</th>
+					<th class="right" data-field="created_at">Date</th>
+					<th class="right" data-field="action">Action</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr ng-repeat='order in orders | filter:order_customer | orderBy: created_at'>
+					<td ng-bind='order.name'></td>
+					<td ng-bind='order.product'></td>
+					<td class="center" ng-bind='order.quantity'></td>
+					<td class="right" ng-bind='order.created_at | date'></td>
+					<td class="right"><form><input type="submit" value="Delete" class="btn btn-danger" ng-click="deleteOrder(order)"></form></td>
+					<!--
+					<td class="right">
+						<input type="submit" class="btn btn-success" ng-hide="editing" ng-click="editing = true"
+							   value="Edit">
+						<div>
+							<form ng-show="editing" ng-submit="editing = false">
+								<label>Name:</label>
+								<select name="name" class="form-control" ng-model="newOrder.name" required>
+									<option></option>
+									<option ng-repeat='customer in customers' value="{{customer.name}}" ng-bind='customer.name'></option>
+								</select>
+								</br>
+								<label>Quantity:</label>
+								<input type="text" ng-model="order.quantity" placeholder="Quantity" ng-required/>
+								</br>
+								<label>Product:</label>
+								<select name="product" class="form-control" ng-model="newOrder.product" required>
+									<option></option>
+									<option ng-repeat='product in products' value="{{product.name}}" ng-model="order.product" ng-bind='product.name'></option>
+								</select>
+								</br>
+								<input class="btn" type="submit" value="Save" ng-click="editOrder(order)">
+							</form>
+						</div>
+					</td>
+					-->
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">			
+			<h2>Add New Order</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4 form-group">		
+			<form name="add_order" class="form">
+				<label>Customer Name:</label>
+				<select name="name" class="form-control" ng-model="newOrder.name" required>
+					<option></option>
+					<option ng-repeat='customer in customers' value="{{customer.name}}" ng-bind='customer.name'></option>
+				</select>
+		</div>
+		<div class="col-md-4 form-group">
+			<label>Quantity:</label>
+			<select name="quantity" class="form-control" ng-model="newOrder.quantity" required>
+				<option></option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="10">10</option>
+				<option value="20">20</option>
+				<option value="50">50</option>
+			</select>
+		</div>
+		<div class="col-md-4 form-group">
+			<label>Product:</label>
+				<select name="product" class="form-control" ng-model="newOrder.product" required>
+					<option></option>
+					<option ng-repeat='product in products' value="{{product.name}}" ng-bind='product.name'></option>
+				</select>
+				<!-- this syntax is not adding the product order object right nwo; it does work in products_view. -->
+				<!-- <select name="product" class="form-control" ng-options="product.name for product in products track by product.name" ng-model="newOrder.product"> -->
+			<input type="submit" name="Add" class="btn btn-primary" ng-disabled="add_order.$invalid"  ng-click="addOrder(newOrder)">
+			</form>
+		</div>
+	</div>
+
+</div>

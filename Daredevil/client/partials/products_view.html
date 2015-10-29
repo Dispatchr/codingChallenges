@@ -1,0 +1,52 @@
+<!--Created by Tejas on 10/24/2015.-->
+<div ng-controller="productsController">
+	<div class="row">
+		<div class="col-md-12">
+			<form name="search" class="form">
+				<div class="form-group">
+					<h2>Search Items</h2>
+					<input type="text" class="form-control" placeholder="Enter Keyword" ng-model="product_name">
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">			
+			<h2>Add a New Item</h2>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-3">
+			<form name="add_product" class="form">
+				<div class="form-group">
+					<input type="text" class="form-control" ng-model="newProduct.name" placeholder="Enter Item Name" required>
+				</div>
+
+				<div class="form-group">
+					<label>Choose Image:</label>
+					<input type="file" name="file" class="form-control" onchange="angular.element(this).scope().addFileName(this.files)">
+				</div>
+
+				<div class="form-group">
+					<textarea class="form-control" ng-model="newProduct.description" placeholder="Enter Description"></textarea>
+				</div>
+				<div class="form-group">
+					<input type="submit" name="Add" class="btn btn-primary" ng-click="addProduct(newProduct)" ng-disabled="add_product.$invalid">					
+				</div>
+			</form>
+		</div>
+		<div class="col-md-9 products product">
+			<div ng-repeat="product in products | filter:product_name" 	class="col-md-4 item">
+				<div ng-bind="product.name" class="name"></div>
+				<img ng-hide="product.image.length === 0" src="images/{{product.image}}" height="200" width="170"><p>
+				<div>
+				<form>
+					<input type="submit" value="Delete" class="btn btn-danger" ng-click="deleteProduct(product)">
+				</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

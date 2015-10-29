@@ -1,0 +1,54 @@
+<head>
+	<title>Product Shop</title>
+	<base href="/">
+</head>
+<body ng-app="productsShop">
+	<div>
+		<header>
+			<h1><a href="/products">View Our Items</a></h1>
+		</header>
+	</div>
+	{{#if currentUser}}
+		{{> loggedin}}
+	{{else}}
+		{{> login}}
+	{{/if}}
+	
+ 
+	<div ui-view></div>
+	  
+</body>
+<!--
+<body>
+  <h1>Welcome to Meteor!</h1>
+
+  {{> hello}}
+</body>
+
+<template name="hello">
+  <button>Click Me</button>
+  <p>You've pressed the button {{counter}} times.</p>
+</template>
+-->
+<template name="login">
+    <form>
+		<table>
+			<tr><td colspan="2"><input type="mail" name="lEmail"></td></tr>
+			<tr><td colspan="2"><input type="password" name="lPassword"></td></tr>
+			<tr><td><a href="/register">Create an Account</a></td><td><input type="submit" value="Login"></td></tr>
+		</table>
+    </form>
+</template>
+<template name="loggedin">
+	<div>
+	{{#if currentUser}}
+		<header>
+			<input type="submit" value="Logout" class="logout"/>
+			<a href="account">{{ fullname }}</a> | 
+			<a href="checkout">Checkout</a> | 
+			<a href="orders">Orders</a> | 
+			<a href="addProduct">Add a new product</a>
+		</header>
+	{{/if}}
+    </div>
+</template>

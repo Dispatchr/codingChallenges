@@ -1,0 +1,19 @@
+<div class="container" ng-controller="Register">
+    <form ng-submit="registerUser(u)">
+        <table>
+			<tr><td>E-Mail</td><td><input type="email" ng-model="u.email"></td></tr>
+			<tr><td>Password</td><td><input type="password" ng-model="u.pass1"></td></tr>
+			<tr><td></td><td><input type="password" ng-model="u.pass2"></td></tr>
+			<tr><td>First Name</td><td><input type="text" ng-model="u.fname"></td></tr>
+			<tr><td>Last Name</td><td><input type="text" ng-model="u.lname"></td></tr>
+			<tr><td>Address</td><td><input type="text" ng-model="u.address"></td></tr>
+			<tr><td>State</td><td><input type="text" ng-model="u.state"></td></tr>
+			<tr><td>Zipcode</td><td><input type="text" ng-model="u.zipcode"></td></tr>
+			<tr><td>Country</td><td><input type="text" ng-model="u.country"></td></tr>
+			<tr><td>Phone#1</td><td><input type="text" ng-model="u.phone1"></td></tr>
+			<tr><td>Phone#2</td><td><input type="text" ng-model="u.phone2"></td></tr>
+			<tr><td>Role</td><td><input type="text" ng-model="u.role"></td></tr><!-- limit for non-admin  ng-if="isAdmin"-->
+			<tr><td colspan=2><input type="submit" value="Register"></td></tr>
+        </table>
+    </form>
+</div>

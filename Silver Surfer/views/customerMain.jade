@@ -1,0 +1,107 @@
+html(lang="en", ng-app="custApp")
+  head
+    include ./layout
+    link(rel="stylesheet", href="customerStyle.css")
+    script(type="text/javascript", src="CustUserExp.js")
+    script(type="text/javascript", src="CustApp.js")
+  body(class="container-fluid", ng-controller="custCtrl")
+    //- navbar 
+    div(class="row", id="header")
+      nav(class="navbar navbar-default navbar-fixed-top")
+        div(class="navbar-header") 
+          img#logo(src="http://www.dispatchr.com/img/logo.png")
+
+    div(class="col-xs-3 col-sm-3 col-md-3 col-lg-3")
+      h3 Name: {{CustomerUsername}}
+      h4 Address: {{Address}}
+      h4 Phone: {{Phone}}
+      h4 Email: {{Email}}
+
+      ul(class="nav nav-pills nav-stacked")
+        li 
+          a(ng-click="seeCartTab()", href="", class="active") Products You Bought
+        li 
+          a(ng-click="seeInvTab()", href="") Products
+
+    div(class="col-xs-9 col-sm-9 col-md-9 col-lg-9")
+      table#cartTable(ng-show="showCartTab", class="table table-hover")
+        thead
+          th Order Name
+          th Amount
+          th Rate
+          th Total
+        tbody
+          tr(ng-repeat="item in items")
+            td {{item.OrderName}}
+            td {{item.Amount}}
+            td {{item.Rate}}
+            td {{item.Amount * item.Rate}}
+
+      table#invTable(ng-show="showInvTab", class="table table-hover")
+        thead
+          th Product Name
+          th Product Rate
+          th(ng-hide="isGuest") Amount
+        tbody
+          tr(ng-repeat="item in inventory")
+            td {{item.inventoryName}}
+            td {{item.inventoryRate}}
+            td(ng-hide="isGuest") 
+              input(type="number", ng-model="custBuyAmount")
+            td(ng-hide="isGuest") 
+              button(class="btn btn-success", ng-click="custAddNewOrder(item.inventoryName, custBuyAmount, item.inventoryRate, CustomerUsername)") BUY
+
+    //-----------------------------Modal for login & sign up------------------------------
+    div#custloginModal(class="modal")
+      div(class="modal-dialog")
+        div(class="modal-content")
+          div(class="modal-header")
+            h2(class="modal-title") Welcome to Dispatchr Market
+
+          div(class="modal-body")
+            div#btnPart
+              input#custloginBtn(class="btn btn-success", value="Login", type="button")
+              input#custsignupBtn(class="btn btn-default", value="Sign Up", type="button")
+
+            div#custlogin
+              div(class="input-group input-group")
+                span(class="input-group-addon", id="sizing-addon1") 
+                  span(class="glyphicon glyphicon-user")
+                input#custUsername(ng-model="custUsername", type="text", class="form-control", placeholder="Enter Username", aria-describedby="sizing-addon1")
+              //- div(class="input-group input-group")
+              //-   span(class="input-group-addon", id="sizing-addon1") 
+              //-     span(class="glyphicon glyphicon-pencil")
+              //-   input#custPassword(ng-model="custPassword", type="text", class="form-control", placeholder="Enter Password", aria-describedby="sizing-addon1")
+
+            div#custsignup
+              div(class="input-group input-group")
+                span(class="input-group-addon", id="sizing-addon1") 
+                  span(class="glyphicon glyphicon-user")
+                input#custSignUser(ng-model="custSignUser", type="text", class="form-control", placeholder="Enter Username", aria-describedby="sizing-addon1")
+              //- div(class="input-group input-group")
+              //-   span(class="input-group-addon", id="sizing-addon1") 
+              //-     span(class="glyphicon glyphicon-pencil")
+              //-   input#custSignPwd(ng-model="custSignPwd", type="password", class="form-control", placeholder="Enter Password", aria-describedby="sizing-addon1")
+              div(class="input-group input-group")
+                span(class="input-group-addon", id="sizing-addon1") 
+                  span(class="glyphicon glyphicon-map-marker")
+                input#custSignAddrs(ng-model="custSignAddrs", type="text", class="form-control", placeholder="Enter Address", aria-describedby="sizing-addon1")
+              div(class="input-group input-group")
+                span(class="input-group-addon", id="sizing-addon1") 
+                  span(class="glyphicon glyphicon-earphone")
+                input#custSignPhone(ng-model="custSignPhone", type="number", class="form-control", placeholder="Enter Phone Number", aria-describedby="sizing-addon1")
+              div(class="input-group input-group")
+                span(class="input-group-addon", id="sizing-addon1") 
+                  span(class="glyphicon glyphicon-pencil")
+                input#custSignEml(ng-model="custSignEml", type="text", class="form-control", placeholder="Enter Email", aria-describedby="sizing-addon1")
+
+          div(class="modal-footer")
+            div#loginBtnPart
+              button#loginBtn(ng-click="custLogin(custUsername)", class="btn btn-success btn-lg btn-block", data-dismiss="modal") Login
+              button#loginGstBtn(class="btn btn-default btn-lg btn-block", data-dismiss="modal") Login as Guest
+            div#signupBtnPart
+              button#signupBtn(ng-click="custSignup(custSignUser, custSignAddrs, custSignPhone, custSignEml)", class="btn btn-success btn-lg btn-block", data-dismiss="modal") Sign Up
+
+            
+    
+

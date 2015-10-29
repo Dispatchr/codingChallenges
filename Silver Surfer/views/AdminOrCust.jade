@@ -1,0 +1,55 @@
+html(lang="en")
+  head
+    include ./layout
+    link(rel="stylesheet", href="entrance.css")
+  body(class="container-fluid")
+    //- navbar 
+    div#header(class="row")
+      nav(class="navbar navbar-default navbar-fixed-top")
+        div(class="navbar-header") 
+          img#logo(src="http://www.dispatchr.com/img/logo.png")
+        div(class="navbar navbar-right")
+          h2 Customer And Admin System
+
+    div#body(class="row")
+      div#bodymiddle(class="jumbotron")
+        div(class="row")
+          div#bCust(class="col-xs-5 col-sm-5 col-md-5 col-lg-5")
+            div(class="well well-lg")
+              h3
+                | If you are the Customer:
+              p
+                | * Customers will be seperate into registered customer and guest
+              p
+                | * Registered customer will have rights to buy
+              p
+                | * Guest has no rights to buy, but still can see the products in inventory
+              p
+                a(class="btn btn-success btn-lg btn-block", href="/customer") Be Customer
+
+          div#bAdmin(class="col-xs-5 col-sm-5 col-md-5 col-lg-5")
+            div(class="well well-lg")
+              h3
+                | If you are the Admin:
+              p
+                | * Admin will be seperate into two types: Sales Representative and Administrator
+              p
+                | * Sales Representative has no rights to add inventory or edit the order, but can add orders
+              p
+                | * Administrator will have all rights, including: add and edit orders, edit customer infomation, add inventory
+              p
+                a(class="btn btn-primary btn-lg btn-block", href="admin") Be Admin
+            
+    div#footer(class="row")
+      nav(class="navbar navbar-default navbar-fixed-bottom")
+        h4 All copyrights reserved by 
+          a Xuchang Chen 
+          | ---- the Fearless Developer
+          
+
+
+    
+
+            
+    
+

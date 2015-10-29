@@ -1,0 +1,39 @@
+html, body{
+	height: 100%;
+}
+
+#header{
+	height: 10%;
+	width: 100%;
+}
+
+#orderManage, #invenManage{
+	height: 80%;
+	width: 100%;
+}
+
+#footer{
+	height: 10%;
+	width: 100%;
+}
+
+#logo{
+	margin-top: 15px;
+	margin-bottom: 15px;
+	margin-left: 20px;
+}
+
+#appname{
+	margin-top: 15px;
+	margin-bottom: 15px;
+	margin-right: 30px;
+}
+
+nav div button{
+	margin-top: 15px;
+	margin-left: 20px;
+}
+
+#addInvenBtn{
+	margin-left: 0px;
+}

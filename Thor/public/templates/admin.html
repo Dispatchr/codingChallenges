@@ -1,0 +1,71 @@
+<form>
+  <div class='row'>
+    <div class="form-group col-xs-6">
+      <label for="name">Name</label>
+      <input type="text" class="form-control input-sm" ng-model='item.name' id="name" placeholder="Name of item">
+    </div>
+    <div class="form-group col-xs-6">
+      <label for="price">Price</label>
+      <input type="number" step="any" class="form-control input-sm" ng-model='item.price' id="price" placeholder="Price">
+    </div>
+  </div>
+  <div class='row'>
+      <div class="form-group col-xs-12">
+        <label for="tags">Tags</label>
+        <input type="text" class="form-control input-sm" ng-model='item.tags' id="tags" placeholder="Tags (comma separated)">
+      </div>
+  </div>
+  <div class='row'>
+    <div class="form-group col-xs-1">
+      <button type="submit" ng-click='addItem()' class="btn btn-default btn-info">Add Item</button>
+    </div>
+  </div>
+</form>
+
+<div class="page-header">
+  <h4>Shopping Items</h4>
+</div>
+
+<ul class="list-group" ng-repeat='item in items'>
+  <li class="list-group-item">
+    <div class='row'>
+      <div class="form-group col-xs-6">
+        <input type="text" class="form-control input-sm" id="name" ng-model='items[$index].name' value='{{ item.name }}'/>
+      </div>
+      <div class="form-group col-xs-2">
+        <input type="text" class="form-control input-sm" id="price" ng-model='items[$index].price' value='{{ item.price | currency }}'/>
+      </div>
+      <div class="form-group col-xs-3">
+        <input type="text" class="form-control input-sm" id="tags" ng-model='items[$index].tags' value='{{ item.tags }}' placeholder='tags' />
+      </div>
+      <div class="form-group col-xs-1">
+        <button ng-click='updateItem($index)' class="btn btn-sm btn-info">Update</button>
+      </div>
+    </div>
+  </li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

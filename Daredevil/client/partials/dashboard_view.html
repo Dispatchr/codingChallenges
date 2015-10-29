@@ -1,0 +1,35 @@
+<!--Created by Tejas on 10/24/2015.-->
+<div ng-controller="dashboardController">
+	<div class="row">
+		<div class="col-md-12 products">
+		<h1 align="center">Dispatchr_CMS</h1>
+		<h3>A Customer Management System</h3>
+			<h3>New Items Added Recently</h3>
+
+			<div ng-repeat="product in products | orderBy: created_at | limitTo:4" class="col-md-3 item">
+				<img src="images/{{product.image}}">
+				<div class="name"><a href="#/products/{{product._id}}">{{product.name}}</a></div>
+				<p>{{product.description}}</p>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<h3>Recent Orders</h3>
+			<ul>
+				<li ng-repeat='order in orders | orderBy: created_at | limitTo:4'>{{order.name}} purchased {{order.quantity}} {{order.product}} on {{order.created_at | date}}</li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<h3>New Customers</h3>
+			<ul>
+				<li ng-repeat='customer in customers | orderBy: created_at | limitTo:4'>{{customer.name}} joined the store on {{customer.created_at | date}}</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<footer>
+	<p>*Add new Customers, Orders or Items to view on Dashboard</p>
+</footer>

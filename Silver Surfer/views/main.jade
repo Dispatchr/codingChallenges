@@ -1,0 +1,53 @@
+html(lang="en", ng-app="cartApp")
+  head
+    include ./layout
+    link(rel="stylesheet" href="style.css")
+    script(type="text/javascript", src="CartApp.js")
+    script(type="text/javascript", src="UserExp.js")
+  body(class="container-fluid", ng-controller="MainCtrl")
+    //- navbar 
+    include ./navbar
+
+    //- order manage 
+    div#orderManage(class="row", ng-show="showOrd")
+      //- left part of the page, let you add new customers and orders, also search
+      include ./addAndSearch
+      
+      //- right part of the page, show all the customers and orders
+      include ./inventoryList
+
+    //- inventory manage
+    div#invenManage(class="row", ng-show="showInv")
+      div(class="col-xs-3 col-sm-3 col-md-3 col-lg-3")
+        div(class="input-group input-group")
+          span(class="input-group-addon", id="sizing-addon1") 
+            span(class="glyphicon glyphicon-gift")
+          input#invName(ng-model="invName", type="text", class="form-control", placeholder="Enter Inventory Name", aria-describedby="sizing-addon1")
+        div(class="input-group input-group")
+          span(class="input-group-addon", id="sizing-addon1") 
+            span(class="glyphicon glyphicon-euro")
+          input#invRate(ng-model="invRate", type="text", class="form-control", placeholder="Enter Single Rate", aria-describedby="sizing-addon1")
+        button#addInvenBtn(class="btn btn-success btn-lg btn-block", ng-click="addInventory(invName, invRate)") Add New Inventory
+
+      div(class="col-xs-9 col-sm-9 col-md-9 col-lg-9")
+        table(class="table table-hover")
+          thead
+            tr
+              th Item Name
+              th Item Rate
+          tbody
+            tr(ng-repeat="item in inventory")
+              td {{item.inventoryName}}
+              td {{item.inventoryRate}}
+
+    //- footer, all the modals are hidden here
+    div(class="row", id="footer")   
+      //- Modal for login
+      include ./login
+              
+      //- Modal for Adding New Customer and Order
+      include ./addNewCustomer
+
+      //- Modal for Adding New Order for Existing Customer
+      include ./addNewOrder
+

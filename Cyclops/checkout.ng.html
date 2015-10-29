@@ -1,0 +1,22 @@
+<div class="container" ng-controller="Checkout">
+    <h1 class="Product">Checkout</h1>
+    <ul>
+		<li ng-repeat="item in basket.products">
+			<button class="delete" ng-click="basket.products.remove(item)">&times;</button>
+			<span class="test">
+				{{inBasket(item.product).name}} | 
+				{{inBasket(item.product).price}} |
+				{{inBasket(item.product).description}} |
+				{{inBasket(item.product).image}} |
+				{{inBasket(item.product).status}} |
+				{{item.quantity}}
+			</span>
+		</li>
+	</ul>
+    <div ng-show="inBask">
+		<button ng-click="buyThem(basket)">Buy Them</button>
+	</div>
+    <div ng-hide="inBask">
+		<span class="test">Your basket is empty</span>
+	</div>
+</div>

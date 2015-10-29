@@ -1,0 +1,262 @@
+
+<template name="register">
+	<h2> Register </h2>
+<form class="register">
+<p>Email: <input type="email" name="email" required autofocus> </p>
+<p>Password: <input type="password" name="password" required></p>
+<p><input type="submit" value="Register"></p>
+</form>
+</template>
+<template name="login">
+	<h2> Login </h2>
+<form class="login">
+<p>Email: <input type="email" name="email" required autofocus></p>
+<p>Password: <input type="password" name="password" required></p>
+<p><input type="submit" value="Login"></p>
+</form>
+</template>
+<template name="home">
+	<h2> Home </h2>
+	Home is where you belong...
+</template>
+<template name="navigation">
+	<nav>
+			<a href="{{pathFor route='home'}}">Home </a>|
+			{{#if currentUser}}
+				<a href="#" class="logout">Logout </a>|
+				<a href="{{pathFor route='addNewCustomer'}}">Add a new customer </a>| 
+				<a href="{{pathFor route='editCustomerInfo'}}">Edit customer info </a>| 
+				<a href="{{pathFor route='addNewItem'}}">Add a new item </a>| 
+				<a href="{{pathFor route='editItemInfo'}}">Edit item info </a>| 
+				<a href="{{pathFor route='addNewOrder'}}">Add a new order </a>| 
+				<a href="{{pathFor route='viewOrder'}}">View order info </a>
+			{{else}}
+				<a href="{{pathFor route='login'}}">Login </a>| 
+				<a href="{{pathFor route='register'}}">Register </a> 
+			{{/if}}
+	</nav>
+</template>
+<template name="viewOrder">
+	<h3> View Orders </h3>
+	{{> orderList}}
+	
+</template>
+<template name="orderList">
+	<ul>
+		{{#each orders}}
+			<li><a href='/viewOrderDetails/{{_id}}'>{{email}} Order On {{createAt}} </a></li>
+		{{/each}}
+	
+	</ul>
+	
+	
+</template>
+<template name="main">
+	<h1>Welcome to Stock Mangement System!</h1>
+	{{> navigation}}
+	{{> yield}}
+	
+	<hr />
+	<p> Homework from Dispatchr.co </p>
+	
+</template>
+<template name="addNewCustomer">
+	<h3> Add a new customer. Please fill a form below and press 'Save' button </h3>
+	<form class="addNewCustomer">
+		<ul>
+			<li>Name: <input type="text" name="name" autofocus> </li>
+			<li>Email: <input type="email" name="email" required> </li>
+			<li>Phone: <input type="number" name="phone" > </li>
+			<li>Address: <input type="text" name="address" > </li>
+			<li>Credit card: <input type="number" name="ccNumber"> </li>
+		</ul>
+		<input type="submit" value="Save">
+	</form>
+</template>
+<template name="addNewItem">
+	<h3> Add a new Item. Please fill a form below and press 'Save' button </h3>
+	<form class="addNewItem">
+		<ul>
+			<li>Product Name: <input type="text" name="pname" autofocus> </li>
+			<li>Brand: <input type="text" name="brand" > </li>
+			<li>Serial Number: <input type="text" name="snumber" required> </li>
+			<li>Model: <input type="text" name="model" > </li>
+			<li>Price in US dollars: <input type="number" name="price"> </li>
+		</ul>
+		<input type="submit" value="Save">
+		
+	</form>
+</template>
+<template name="addNewOrder">
+	<h3> Add a new Order. Please enter customer's email, add items to cart and press 'Save' button </h3>
+	<form class="addNewOrder">
+		<ul>
+			<li>Customer's Email: <input type="text" name="email" autofocus> </li>
+				{{> matchCustomerEmail}}
+			
+				{{> itemTable}}	
+				{{> cart}}
+			
+		</ul>
+		<input type="submit" value="Checkout">
+		<button class="clearCart" type="button">Clear Cart</button>
+	</form>
+</template>
+<template name="cart">
+	<h4> Items in cart </h4>
+<table style="width:100%">
+  <tr>
+    <!--<th>Product Name</th>
+    <th>Brand</th>		
+    <th>Serial Number</th>
+	<th>Model</th>
+	<th>Price</th>-->
+	<th>Item ID </th>
+	<th>Quantity</th>
+	<th></th>
+  </tr>
+  {{#each itemsInCart}}
+   <tr>
+   <!--<td>{{pname}}</td>
+    <td>{{brand}}</td>		
+    <td>{{snumber}}</td>
+	<td>{{model}}</td>
+	<td>{{price}}</td>
+   -->
+	<td>{{itemID}}</td>
+	<td>{{quantity}}</td>
+	<td> <a href="#" > Remove(coming soon!) </a> </td>
+  </tr>
+  {{/each}}
+</table> 
+</template>
+<template name="viewOrderDetails">
+	<h4> Order Details</h4>
+<table style="width:100%">
+  <tr>
+    <!--<th>Product Name</th>
+    <th>Brand</th>		
+    <th>Serial Number</th>
+	<th>Model</th>
+	<th>Price</th>-->
+	<th>Item ID </th>
+	<th>Quantity</th>
+	<th></th>
+  </tr>
+  {{#each items}}
+   <tr>
+   <!--<td>{{pname}}</td>
+    <td>{{brand}}</td>		
+    <td>{{snumber}}</td>
+	<td>{{model}}</td>
+	<td>{{price}}</td>
+   -->
+	<td>{{itemID}}</td>
+	<td>{{quantity}}</td>
+	<td> <a href="#" > Remove(coming soon!) </a> </td>
+  </tr>
+  {{/each}}
+</table> 
+</template>
+<template name="matchCustomerEmail">
+	<p> Matched Email Found: (autocomplete coming soon) </p>
+	<ul>
+	{{#each emails}}
+	<li> <a href="#" class="autoFillEmail" value="{{email}}">{{email}}</a> </li>
+	{{/each}}
+	</ul>
+	
+</template>
+<template name="itemTable">
+	<h4> Available Items </h4>
+<table style="width:100%">
+  <tr>
+    <th>Product Name</th>
+    <th>Brand</th>		
+    <th>Serial Number</th>
+	<th>Model</th>
+	<th>Price</th>
+	<th></th>
+  </tr>
+  {{#each items}}
+   <tr>
+    <td>{{pname}}</td>
+    <td>{{brand}}</td>		
+    <td>{{snumber}}</td>
+	<td>{{model}}</td>
+	<td>{{price}}</td>
+	<td> <a href="#" class="addToCart"> Add </a> </td>
+  </tr>
+  {{/each}}
+  
+</table>
+</template>
+<template name="foundCustomers">
+	<ul>
+		<h4> Result: </h4>
+	{{#each foundCustomers}}
+		<!--	<li><a href="{{pathFor route='modifyCustomerInfo'}}"> {{name}} : {{email}} : {{phone}} </a> </li> -->
+				<li><a href="/modifyCustomerInfo/{{_id}}"> {{name}} : {{email}} : {{phone}} </a> </li> 
+	{{/each}}
+	
+	</ul>
+</template>
+<template name="foundItems">
+	<ul>
+		<h4> Result: </h4>
+	{{#each foundItems}}
+		<!--	<li><a href="{{pathFor route='modifyCustomerInfo'}}"> {{name}} : {{email}} : {{phone}} </a> </li> -->
+				<li><a href="/modifyItemInfo/{{_id}}"> {{brand}} : {{pname}} : {{mode}}: {{snumber}} : {{price}} $</a> </li> 
+	{{/each}}
+	
+	</ul>
+</template>
+<template name="lookUpCustomer">
+	<h3> Look up a customer to edit either by name, by email or by phone number.</h3>
+	<p> Name:<input type="text" name="lookByName" placeholder="Coming soon!" disabled> </p>
+	<p> Email: <input type="email" name="lookByEmail" placeholder="Find by email" autofocus> </p>
+	<p> Phone number:<input type="number" name="lookByPhone" placeholder="Coming soon!" disabled> </p>
+	{{> foundCustomers}}
+</template>
+<template name="lookUpItem">
+	<h3> Look up an item to edit either by brand, by serial number or by model to edit.</h3>
+	<p> Brand:<input type="text" name="lookByBrand" placeholder="Coming soon!" disabled> </p>
+	<p> Serial Number: <input type="text" name="lookBySnumber" placeholder="Find by serial number" autofocus> </p>
+	<p> Model:<input type="text" name="lookByModel" placeholder="Coming soon!" disabled> </p>
+	{{> foundItems}}
+</template>
+
+<template name="modifyCustomerInfo">
+	<h3> Edit customer info. Please edit as much as you like and press 'Save' button </h3>
+	<form class="editCustomerInfo">
+		<ul>
+			<li>Name: <input type="text" name="name" value="{{name}}"> </li>
+			<li>Email: <input type="email" name="email" value="{{email}}" required> </li>
+			<li>Phone: <input type="number" name="phone" value="{{phone}}"> </li>
+			<li>Address: <input type="text" name="address" value="{{address}}" > </li>
+			<li>Credit card: <input type="number" name="ccNumber" value="{{ccNumber}}"> </li>
+		</ul>
+		<input type="submit" value="Save">
+	</form>
+</template>
+<template name="modifyItemInfo">
+	<h3> Edit item info. Please edit as much as you like and press 'Save' button </h3>
+	<form class="editItemInfo">
+		<ul>
+			<li>Product Name: <input type="text" name="pname" value="{{pname}}" autofocus> </li>
+			<li>Brand: <input type="text" name="brand" value="{{brand}}"> </li>
+			<li>Serial Number: <input type="text" name="snumber" value="{{snumber}}"  required> </li>
+			<li>Model: <input type="text" name="model" value="{{model}}"> </li>
+			<li>Price in US dollars: <input type="number" name="price" value="{{price}}" min="0.01" step="0.01"> </li>
+		</ul>
+		<input type="submit" value="Save">
+	</form>
+</template>
+<template name="editCustomerInfo">
+	
+	{{> lookUpCustomer}}
+</template>
+<template name="editItemInfo">
+	
+	{{> lookUpItem}}
+</template>

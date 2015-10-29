@@ -1,0 +1,14 @@
+<div class="container" ng-controller="ViewOrders">
+    <h1 class="Product">Orders</h1>
+    <ul ng-hide="isNotLogged()">
+		<li ng-repeat="ord in orders">
+			<button class="delete" ng-click="ords.remove(ord)">&times;</button>
+			<span class="test">
+				<p>UserID:{{ord.userInfo}}</p>
+				<p>Date: {{ord.date}} </p>
+				<p>Total Price: {{ord.price|currency}} </p>
+				<p><a href="order/{{ord._id}}">View more info</a></p>
+			</span>
+		</li>
+	</ul>
+</div>

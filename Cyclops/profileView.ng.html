@@ -1,0 +1,11 @@
+<div class="container" ng-controller="ProfileView">
+    <h2 class="Product">{{yourProf.email}}</h2>
+    <ul>
+		<li ng-repeat="address in addresses">
+			<button class="delete" ng-click="addresses.remove(address)">&times;</button>
+			<span class="test">
+				{{address.address}}
+			</span>
+		</li>
+	</ul>
+</div>

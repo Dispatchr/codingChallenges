@@ -1,0 +1,33 @@
+//---------------- Modal for Adding New Order for Existing Customer --------------------
+div(id="newOrdForm", class="modal fade", role="dialog")
+  div(class="modal-dialog")
+    div(class="modal-content")
+      div(class="modal-header")
+        button(type="button", class="close", data-dismiss="modal") &times;
+        h4(class="modal-title") 
+          | Add New Orders for Existing Customer
+      div(class="modal-body")
+        form#newOrdForm(action="/addNewOrder", method="POST", name="newOrdForm" novalidate)
+          
+          div(class="input-group input-group")
+            span(class="input-group-addon", id="sizing-addon1") 
+              span(class="glyphicon glyphicon-shopping-cart")
+            select#ExOrderName(ng-model="ExOrderName", ng-options="(item.inventoryName + '  $' + item.inventoryRate) for item in inventory track by item.inventoryRate", name="OrderName", class="form-control", aria-describedby="sizing-addon1")
+              option(value="") ----Choose Item----
+
+          span(style="color:red" ng-show="newOrdForm.ExOrderName.$dirty && newOrdForm.ExOrderName.$invalid")
+            span(ng-show="newOrdForm.ExOrderName.$error.required") Order name is required.
+          
+          div(class="input-group input-group")
+            span(class="input-group-addon", id="sizing-addon1") 
+              span(class="glyphicon glyphicon-scale")
+            input#ExAmount(ng-model="ExAmount", type="number", name="ExAmount", class="form-control", placeholder="Amount", aria-describedby="sizing-addon1" required)
+          span(style="color:red" ng-show="newOrdForm.ExAmount.$dirty && newOrdForm.ExAmount.$invalid")
+            span(ng-show="newOrdForm.ExAmount.$error.required") Amount is required.
+            span(ng-show="newOrdForm.ExAmount.$invalid", style="color: red;") Amount is invalid.
+      
+      div(class="modal-footer")
+        button(ng-click="addNewOrder()", class="btn btn-success", data-dismiss="modal", ng-disabled="newOrdForm.$invalid")
+          | Add This Order
+        button(class="btn btn-default", data-dismiss="modal") 
+          | Close
