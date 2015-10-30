@@ -1,0 +1,42 @@
+extends layout
+
+block content 
+  include ./navbar.jade
+  .container
+    .row
+      .col-md-6.col-sm-8.col-xs-12.col-md-offset-3.col-sm-offset-w
+        #custom-search-input
+          .input-group.col-md-12
+            input.form-control.input-lg(type='text', placeholder='search', ng-model="query")
+               
+
+  .text-center
+    h1 An awesome angular marketplace
+    p.lead Single Page application
+
+  .container(ng-controller="list-controller")    
+    .row
+      div(ng-repeat="x in list | filter:query")      
+      
+        .col-sm-4.col-lg-4.col-md-4
+          .thumbnail
+            .caption
+              a(href="/itempage?id={{x._id}}")
+                h4.pull-right ${{x.price}}
+              h4
+                a(href="/itempage?id={{x._id}}") {{x.title}}
+              p
+                | {{x.description}}
+              if user
+                if user.local.admin
+                  h4.pull-right
+                    a(ng-click="delete(x._id)" id="{{id}}" ) delete 
+
+
+  script(type='text/javascript', src='javascripts/jquery-2.1.4.min.js')
+  script(type='text/javascript', src='javascripts/angular.min.js')
+  script(src="javascripts/angular-route.js")
+  script(type='text/javascript', src='javascripts/angular-animate.js')
+  script(type='text/javascript', src='javascripts/bootstrap.min.js', integrity='sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==', crossorigin='anonymous')
+  script(type='text/javascript', src='javascripts/ui-bootstrap-tpls-0.14.3.min.js')
+  script(src='javascripts/index.js') 

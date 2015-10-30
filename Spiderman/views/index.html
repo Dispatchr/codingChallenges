@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html> 
+  <head>
+    <link rel="stylesheet" href="stylesheets/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+  </head>
+  <body ng-app="marketApp"> 
+    <div ng-controller="ModalCtrl">
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li><button type="button" class="btn btn-default" ng-click="open_login()">Login</button>
+          <li><button type="button" class="btn btn-default" ng-click="open_signup()">Signup</button>
+        </ul>
+      </div>
+    </nav>
+
+
+      <script type="text/ng-template" id="signin.html">
+        <form ng-submit="processForm()">
+          <div class="modal-header">
+            <h3 class="modal-title">Login</h3>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <input class="form-control" id="exampleInputEmail1" placeholder="Enter email" type="email" ng-model="login.Email">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input class="form-control" id="exampleInputPassword1" placeholder="Password" type="password" ng-model="login.Passport">
+            </div>
+            <p class="text-right"><a href="#">Forgot password?</a></p>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" type="submit" ng-click="ok()">Login</button>
+          <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+      </script>
+
+      <script type="text/ng-template" id="signup.html">
+        <form ng-submit="processForm()">
+          <div class="modal-header">
+            <h3 class="modal-title">Signup</h3>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <input class="form-control" id="exampleInputEmail1" placeholder="Enter email" type="email" ng-model="signup.Email">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input class="form-control" id="exampleInputPassword1" placeholder="Password" type="password" ng-model="signup.password">
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" type="submit" ng-click="ok()">signup</button>
+          <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+      </script>
+    </div>
+    <div class="text-center">
+      <h1>An awesome marketplace</h1>
+      <p class="lead">You can buy a lot of stuff</p>
+    </div>
+
+    <h1>Hello {{ login }}</h1>
+    <script type="text/javascript" src="javascripts/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="javascripts/angular.min.js"></script>
+    <script type="text/javascript" src="javascripts/angular-animate.js"></script>
+    <script type="text/javascript" src="javascripts/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="javascripts/ui-bootstrap-tpls-0.14.3.min.js"></script>
+    <script src="javascripts/index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,146 @@
+div(ng-controller='ModalCtrl')
+     nav.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
+       .container
+         
+         .navbar-header
+           button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+             span.sr-only Toggle navigation
+             span.icon-bar
+             span.icon-bar
+             span.icon-bar
+           a.navbar-brand(href='/') MarketAPP
+        
+         #bs-example-navbar-collapse-1.collapse.navbar-collapse
+           ul.nav.navbar-nav
+             
+             if !user
+              li
+                a(ng-click='open_login()') Login
+              li
+                a(ng-click='open_signup()') Signup
+             else
+              if user.local.admin
+                li 
+                  a(ng-click='open_list()') listwithus
+              li
+                a(ng-click='profile()' style="color:white;") #{user.local.email}  
+
+              li 
+                a(href="/logout") Logout
+
+     script(type='text/ng-template', id='signin.html').
+       <form ng-submit="processForm()" ng-model="login">
+       <div class="modal-header">
+       <h3 class="modal-title">Login</h3>
+       </div>
+       <div class="modal-body">
+       <div class="form-group">
+       <div>{{errors}}</div>
+       <label for="exampleInputEmail1">Email address</label>
+       <input class="form-control" id="exampleInputEmail1" placeholder="Enter email" type="email" ng-model="login.email">
+       </div>
+       <div class="form-group">
+       <label for="exampleInputPassword1">Password</label>
+       <input class="form-control" id="exampleInputPassword1" placeholder="Password" type="password" ng-model="login.password">
+       </div>
+       <p class="text-right"><a href="#">Forgot password?</a></p>
+       </div>
+       </div>
+       <div class="modal-footer">
+       <button class="btn btn-primary" type="submit" ng-click="ok()">Login</button>
+       <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+       </div>
+
+     script(type='text/ng-template', id='listobject.html').
+          <div>       
+            <form ng-submit="processForm()">
+              <div class="modal-header">
+                <h3 class="modal-title">List product</h3>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <div>{{errors_list}}</div>
+                    <label for="title_list">Title</label>
+                    <input class="form-control" id="title_list" placeholder="Enter Title" type="string" ng-model="list.title" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="description_list">Description</label>
+                    <input class="form-control" id="description_list" placeholder="Enter Description" type="string" ng-model="list.description" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="price_list">Price</label>
+                    <input class="form-control" id="price" placeholder="price" type="string" ng-model="list.price" required>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-primary" type="submit" ng-click="submit()">Post</button>
+                <button class="btn btn-warning" type="button" ng-click="close_list()">Cancel</button>
+              </div>
+            </form>
+          </div>
+     script(type='text/ng-template', id='signup.html').
+          <div>       
+            <form ng-submit="processForm()">
+              <div class="modal-header">
+                <h3 class="modal-title">Signup as User</h3>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <div>{{errors_user}}</div>
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input class="form-control" id="exampleInputEmail1" placeholder="Enter email" type="email" ng-model="signup_user.email">
+                  </div>
+                  <div class="form-group">
+                    <label for="firstname">First Name</label>
+                    <input class="form-control" id="firstname" placeholder="First Name" type="String" ng-model="signup_user.firstname">
+                  </div>
+                  <div class="form-group">
+                    <label for="lastname">Last Name</label>
+                    <input class="form-control" id="lastname" placeholder="Last name" type="String" ng-model="signup_user.lastname">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input class="form-control" id="exampleInputPassword1" placeholder="Password" type="password" ng-model="signup_user.password">
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-primary" type="submit" ng-click="ok_user()">signup</button>
+                <button class="btn btn-warning" type="button" ng-click="cancel_user()">Cancel</button>
+              </div>
+            </form>
+          </div>
+          <div>
+            <form ng-submit="processForm()">
+              <div class="modal-header">
+                <h3 class="modal-title">Signup as Admin</h3>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <div>{{errors_admin}}</div>
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input class="form-control" id="exampleInputEmail1" placeholder="Enter email" type="email" ng-model="signup_admin.email">
+                  </div>
+                  <div class="form-group">
+                    <label for="firstname">First Name</label>
+                    <input class="form-control" id="firstname" placeholder="First Name" type="String" ng-model="signup_admin.firstname">
+                  </div>
+                  <div class="form-group">
+                    <label for="lastname">Last Name</label>
+                    <input class="form-control" id="lastname" placeholder="Last name" type="String" ng-model="signup_admin.lastname">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input class="form-control" id="exampleInputPassword1" placeholder="Password" type="password" ng-model="signup_admin.password">
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-primary" type="submit" ng-click="ok_admin()">signup</button>
+                <button class="btn btn-warning" type="button" ng-click="cancel_admin()">cancel</button>
+              </div>
+            </form>
+          </div>
+
+      

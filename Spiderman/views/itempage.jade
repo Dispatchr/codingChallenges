@@ -1,0 +1,35 @@
+extends layout
+
+block content
+  include ./navbar.jade
+  
+  .container
+   .row
+     .col-md-10.col-md-offset-1
+       .thumbnail
+         img.img-responsive(src="#{imageUrl}", alt='')
+         .caption-full
+           h4.pull-right $ #{item.price}
+           h4
+             h3 #{item.title}
+           p #{item.description}
+           p.pull-down posted by 
+           a.pulldown(href="#") #{item.postedBy}
+             
+         .ratings
+           p.pull-right 3 reviews
+           p
+             span.glyphicon.glyphicon-star
+             span.glyphicon.glyphicon-star
+             span.glyphicon.glyphicon-star
+             span.glyphicon.glyphicon-star
+             span.glyphicon.glyphicon-star-empty
+             |                             4.0 stars
+       
+  script(type='text/javascript', src='/javascripts/jquery-2.1.4.min.js')
+  script(type='text/javascript', src='/javascripts/angular.min.js')
+  script(src="javascripts/angular-route.js")
+  script(type='text/javascript', src='/javascripts/angular-animate.js')
+  script(type='text/javascript', src='/javascripts/bootstrap.min.js', integrity='sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==', crossorigin='anonymous')
+  script(type='text/javascript', src='/javascripts/ui-bootstrap-tpls-0.14.3.min.js')
+  script(src='/javascripts/index.js') 
